@@ -16,8 +16,13 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 evolve_url = 'https://evolvegenius.com:8090'
 booking_endpoint = '/booking/book-class'
-member_id = 'YOUR-MEMBER-ID'
 
+# REPLACE THESE WITH YOUR OWN
+member_id = 'YOUR-MEMBER-ID'
+registered_email = 'test@test.test'
+registered_password = '123456789'
+
+# FILL THESE WITH YOUR CLASSES ID
 classes_id = {
     # Muay Thai monday 9:30
     'Monday': ['f910001f-53a9-4455-a6b2-b981c9d48bef'],
@@ -36,13 +41,13 @@ def authenticate():
     }
 
     r1 = requests.post(evolve_url + '/booking/sessions', data={
-        'login': 'test@test.test', 'password': '123456789'}, headers=headers)
+        'login': registered_email, 'password': registered_password}, headers=headers)
 
     time.sleep(15)
     code = get_otp()
     if code != 0:
-        r2 = requests.post(evolve_url + '/booking/sessions', data={'login': 'test@test.test',
-                                                                   'password': '123456789', 'verificationCode': code}, headers=headers)
+        r2 = requests.post(evolve_url + '/booking/sessions', data={'login': registered_email,
+                                                                   'password': registered_password, 'verificationCode': code}, headers=headers)
     else:
         print('Interrupting the auth')
         sys.exit()
