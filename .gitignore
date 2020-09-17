@@ -1,0 +1,7 @@
+function
+samples
+credentials.json
+*.log
+f*.py
+gmail.py
+token.pickle
